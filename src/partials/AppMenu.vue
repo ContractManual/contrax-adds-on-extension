@@ -7,7 +7,7 @@ import { RouterLink } from "vue-router";
     <nav>
       <ul>
         <li>
-          <router -link to="/">Home</router>
+          <router-link to="/">Home</router-link>
         </li>
         <li>
           <router-link to="/about">About</router-link>
