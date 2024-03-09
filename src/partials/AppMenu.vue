@@ -25,7 +25,7 @@ const hasPrevious = computed(() => hops.value !== 0);
       <button
         :disabled="!hasPrevious || undefined"
         @click=" hops -= 2; maxHops -= 1; $router.go(-1);"
-        class="w-8 disabled:opacity-40 disabled:hover:bg-primary-200 bg-primary-200 font-semibold py-1 text-white hover:bg-primary-100 transform duration-200"
+        class="w-8 disabled:hover:bg-disabled bg-primary-200 font-semibold py-1 text-white hover:bg-primary-100 transform duration-200"
         title="Go back"
         type="button"
       >
@@ -36,14 +36,14 @@ const hasPrevious = computed(() => hops.value !== 0);
         :key="route.path"
         :to="route.path"
         :data-current-page="router.currentRoute.value.name === route.name ? true : undefined"
-        class="flex-1 capitalize data-[current-page]:cursor-default hover:data-[current-page]:bg-secondary-100 data-[current-page]:bg-secondary-100 bg-primary-200 font-semibold py-1 text-white hover:bg-primary-100 transform duration-200"
+        class="flex-1 capitalize data-[current-page]:cursor-default hover:data-[current-page]:bg-disabled data-[current-page]:bg-disabled bg-primary-200 font-semibold py-1 text-white hover:bg-primary-100 transform duration-200"
       >
         {{ route.meta?.displayName || route.name }}
       </router-link>
       <button
         :disabled="!hasNext || undefined"      
         @click="maxHops -= 1; $router.go(1);"
-        class="w-8 disabled:opacity-40 disabled:hover:bg-primary-200 bg-primary-200 font-semibold py-1 text-white hover:bg-primary-100 transform duration-200"
+        class="w-8 disabled:hover:bg-disabled bg-primary-200 font-semibold py-1 text-white hover:bg-primary-100 transform duration-200"
         title="Go forward"
         type="button"
       >

@@ -17,6 +17,7 @@ export default {
           200: '#ca6702',
           300: '#bb3e03',
         },
+        disabled: "#f4f4f4",
         error: '#ae2012',
       }
     },
