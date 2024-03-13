@@ -5,18 +5,18 @@ import routes from "../router";
 
 const router = useRouter();
 
-const hops = ref(0);
+const currentHop = ref(0);
 const maxHops = ref(0);
 
 router.afterEach((to, from) => {
   if (from?.path !== to?.path) {
     maxHops.value += 1;
-    hops.value += 1;
+    currentHop.value += 1;
   }
 });
 
-const hasNext = computed(() => hops.value < maxHops.value);
-const hasPrevious = computed(() => hops.value !== 0);
+const hasNext = computed(() => currentHop.value < maxHops.value);
+const hasPrevious = computed(() => currentHop.value > 0);
 </script>
 
 <template>
@@ -24,8 +24,8 @@ const hasPrevious = computed(() => hops.value !== 0);
     <nav class="flex text-center divide-x-2 shadow-lg mb-2">
       <button
         :disabled="!hasPrevious || undefined"
-        @click=" hops -= 2; maxHops -= 1; $router.go(-1);"
-        class="w-8 disabled:hover:bg-disabled bg-primary-200 font-semibold py-1 text-white hover:bg-primary-100 transform duration-200"
+        @click=" currentHop -= 2; maxHops -= 1; $router.go(-1);"
+        class="w-8 disabled:hover:bg-disabled disabled:bg-disabled disabled:text-black/50 bg-primary-200 font-semibold py-1 text-white hover:bg-primary-100 transform duration-200"
         title="Go back"
         type="button"
       >
@@ -36,14 +36,14 @@ const hasPrevious = computed(() => hops.value !== 0);
         :key="route.path"
         :to="route.path"
         :data-current-page="router.currentRoute.value.name === route.name ? true : undefined"
-        class="flex-1 capitalize data-[current-page]:cursor-default hover:data-[current-page]:bg-disabled data-[current-page]:bg-disabled bg-primary-200 font-semibold py-1 text-white hover:bg-primary-100 transform duration-200"
+        class="flex-1 capitalize data-[current-page]:cursor-default hover:data-[current-page]:bg-secondary-100 data-[current-page]:bg-secondary-100 bg-primary-200 font-semibold py-1 text-white hover:bg-primary-100 transform duration-200"
       >
         {{ route.meta?.displayName || route.name }}
       </router-link>
       <button
         :disabled="!hasNext || undefined"      
         @click="maxHops -= 1; $router.go(1);"
-        class="w-8 disabled:hover:bg-disabled bg-primary-200 font-semibold py-1 text-white hover:bg-primary-100 transform duration-200"
+        class="w-8 disabled:hover:bg-disabled disabled:bg-disabled disabled:text-black/50 bg-primary-200 font-semibold py-1 text-white hover:bg-primary-100 transform duration-200"
         title="Go forward"
         type="button"
       >
