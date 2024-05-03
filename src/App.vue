@@ -1,9 +1,13 @@
 <script setup>
 import AppMenu from "./partials/AppMenu.vue";
 import Footer from "./partials/Footer.vue";
+import Toaster from '@/components/ui/toast/Toaster.vue'
 </script>
 
 <template>
+  <!-- used for `useToast` hook in any place in the app -->
+  <Toaster /> 
+
   <div class="min-h-screen flex flex-col justify-between">
     <div class="">
       <AppMenu />
@@ -12,5 +16,5 @@ import Footer from "./partials/Footer.vue";
       </main>
     </div>
     <Footer />
-  </div>
+</div>
 </template>
