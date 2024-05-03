@@ -1,0 +1,91 @@
+[
+  {
+    "id": "type",
+    "name": "Type",
+    "inputType": "select",
+    "component": "select",
+    "label": "The type of the contract.",
+    "errors": {
+      "required": "Type is required."
+    },
+    "options": [
+      { "name": "MNDA", "value": "MNDA Mutual NDA" },
+      { "name": "NDA", "value": "NDA NDA" },
+      { "name": "Services & Consulting Agreement", "value": "SCA Services and Consulting" },
+      { "name": "Agreement", "value": "Agreement" },
+      { "name": "MSCA Master Services and Consulting Agreement", "value": "MSCA Master Services and Consulting Agreement" },
+      { "name": "Statement of Work", "value": "SOW Statement of Work" },
+      { "name": "Vendor / Supplier Agreement", "value": "MSCA Master Services and Consulting Agreement" },
+      { "name": "Other", "value": "other" }
+    ],
+    "placeholder": "Select the contract type"
+  },
+  {
+    "id": "role",
+    "name": "Role",
+    "inputType": "select",
+    "component": "select",
+    "label": "Your role in the contract.",
+    "errors": {
+      "required": "Role is required."
+    },
+    "options": [
+      { "name": "Business Partner", "value": "Business Partner" },
+      { "name": "Supplier / Vendor", "value": "Supplier / Vendor" },
+      { "name": "Client", "value": "Client" },
+      { "name": "Other", "value": "other" }
+    ],
+    "placeholder": "Select your role"
+  },
+  {
+    "id": "bargaining_power",
+    "name": "Bargaining Power",
+    "inputType": "radio",
+    "component": "radio",
+    "label": "Who has the bargaining power.",
+    "errors": {
+      "required": "Bargaining Power selection is required."
+    },
+    "options": [
+      { "name": "You do - you can walk away from this.", "value": "You do - you can walk away from this.", "id": "YouCanWalkAway" },
+      { "name": "You have slight bargaining power", "value": "You have slight bargaining power", "id": "SlightBargainingPower" },
+      { "name": "Parties on similar footing", "value": "Parties on similar footing", "id": "SimilarFooting" }
+    ],
+    "placeholder": "Select the bargaining power"
+  },
+  {
+    "id": "time_and_patience",
+    "name": "Time and Patience",
+    "inputType": "radio",
+    "component": "radio",
+    "label": "How much time and patience do you have?",
+    "errors": {
+      "required": "Time and Patience selection is required."
+    },
+    "options": [
+      { "name": "I'm very patient", "value": "I'm very patient", "id": "VeryPatient" },
+      { "name": "I'm patient", "value": "I'm patient", "id": "Patient" },
+      { "name": "I'm practical", "value": "I'm practical", "id": "Practical" },
+      { "name": "I prefer a brief negotiation", "value": "I prefer a brief negotiation", "id": "BriefNegotiation" },
+      { "name": "I must finish this quickly", "value": "I must finish this quickly", "id": "FinishQuickly" }
+    ],
+    "placeholder": "Select the time and patience"
+  },
+  {
+    "id": "risk_appetite",
+    "name": "Risk Appetite",
+    "inputType": "radio",
+    "component": "radio",
+    "label": "What's your appetite for risk?",
+    "errors": {
+      "required": "Risk Appetite selection is required."
+    },
+    "options": [
+      { "name": "High - I'm confident there will be no problem and if there is it's worth it.", "value": "High - I'm confident there will be no problem and if there is it's worth it.", "id": "HighConfidence" },
+      { "name": "Moderate", "value": "Moderate", "id": "ModerateRisk" },
+      { "name": "Medium", "value": "Medium", "id": "MediumRisk" },
+      { "name": "Low", "value": "Low", "id": "LowRisk" }
+    ],
+    "placeholder": "Select the risk appetite"
+  }
+]
