@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import setupOption from "@/data/setup-form.json";
 import { toTypedSchema } from "@vee-validate/zod";
 import { useForm } from "vee-validate";
@@ -11,49 +11,170 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import Button from "@/components/ui/button/Button.vue";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { UserCog } from 'lucide-vue-next';
 
-const validation = z.object(
-  setupOption.reduce(
-    (acc, item) => ({
-      ...acc,
-      [item.name]: z
-        .enum(
-          item.options.map((op) => op.value),
-          { requiredError: item.errors.required }
-        )
-        .describe(item.label),
-    }),
-    {}
-  )
+const formSchema = toTypedSchema(
+  z.object({
+    type: z.enum(
+      setupOption.type.options.map((option) => option.value),
+      { required_error: setupOption.type.errors.required }
+    ),
+    role: z.enum(
+      setupOption.role.options.map((option) => option.value),
+      { required_error: setupOption.role.errors.required }
+    ),
+    bargainingPower: z.enum(
+      setupOption.bargainingPower.options.map((option) => option.value),
+      { required_error: setupOption.bargainingPower.errors.required }
+    ),
+    timeAndPatience: z.enum(
+      setupOption.timeAndPatience.options.map((option) => option.value),
+      { required_error: setupOption.timeAndPatience.errors.required }
+    ),
+    riskAppetite: z.enum(
+      setupOption.riskAppetite.options.map((option) => option.value),
+      { required_error: setupOption.riskAppetite.errors.required }
+    ),
+  })
 );
 
-const form = useForm({
-  validationSchema: toTypedSchema(validation),
+const { handleSubmit } = useForm({
+  validationSchema: formSchema,
 });
 
-const onSubmit = form.handleSubmit((values) => {
-  // TODO
-  console.log("Form submitted!", values);
+const onSubmit = handleSubmit((values) => {
+  // TODO handle form 
+  console.log(values);
 });
 </script>
 
 <template>
-  <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight">Setup</h3>
-  <p class="text-muted-foreground">This is the setup page.</p>
-  <form @submit="onSubmit">
-    <FormField v-slot="{ componentField }" name="username">
-      <FormItem v-auto-animate>
-        <FormLabel>Username</FormLabel>
-        <FormControl>
-          <Input type="text" placeholder="shadcn" v-bind="componentField" />
-        </FormControl>
-        <FormDescription>
-          This is your public display name.
-        </FormDescription>
+  <div class="text-center">
+    <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight flex items-center justify-center gap-3">
+      <span>Setup</span>
+      <UserCog class="inline-block size-7" />
+    </h3>
+    <p class="text-slate-500 text-sm">
+      Fill out the form below to analyze your document.
+    </p>
+  </div>
+  <form class="space-y-2" @submit="onSubmit">
+    <!-- type -->
+    <FormField v-slot="{ componentField }" name="type">
+      <FormItem>
+        <FormLabel>{{ setupOption.type.name }}</FormLabel>
+        <FormDescription>{{ setupOption.type.description }}</FormDescription>
+        <Select v-bind="componentField">
+          <SelectTrigger>
+            <SelectValue :placeholder="setupOption.type.placeholder" />
+          </SelectTrigger>
+          <SelectGroup>
+            <SelectContent>
+              <SelectItem
+                v-for="typeOption in setupOption.type.options"
+                :key="typeOption.value"
+                :value="typeOption.value"
+                >{{ typeOption.name }}</SelectItem
+              >
+            </SelectContent>
+          </SelectGroup>
+        </Select>
         <FormMessage />
       </FormItem>
     </FormField>
-    <Button type="submit">Analyze document</Button>
+
+    <!-- role -->
+    <FormField v-slot="{ componentField }" name="role">
+      <FormItem>
+        <FormLabel>{{ setupOption.role.name }}</FormLabel>
+        <FormDescription>{{ setupOption.role.description }}</FormDescription>
+        <Select v-bind="componentField">
+          <SelectTrigger>
+            <SelectValue :placeholder="setupOption.role.placeholder" />
+          </SelectTrigger>
+          <SelectGroup>
+            <SelectContent>
+              <SelectItem
+                v-for="roleOption in setupOption.role.options"
+                :key="roleOption.value"
+                :value="roleOption.value"
+                >{{ roleOption.name }}</SelectItem
+              >
+            </SelectContent>
+          </SelectGroup>
+        </Select>
+        <FormMessage />
+      </FormItem>
+    </FormField>
+
+    <!-- bargainingPower -->
+    <FormField v-slot="{ componentField }" type="radio" name="bargainingPower">
+      <FormItem class="space-y-3 pb-5">
+        <FormLabel>{{ setupOption.bargainingPower.name }}</FormLabel>
+        <FormDescription>{{ setupOption.bargainingPower.description }}</FormDescription>
+        <FormControl>
+          <RadioGroup class="flex flex-col space-y-1" v-bind="componentField">
+            <FormItem v-for="bargainingPowerOption in setupOption.bargainingPower.options" :key="bargainingPowerOption.value"  class="flex items-center space-y-0 gap-x-3">
+              <FormControl>
+                <RadioGroupItem :value="bargainingPowerOption.value" />
+              </FormControl>
+              <FormLabel class="font-normal">{{ bargainingPowerOption.name }}</FormLabel>
+            </FormItem>
+          </RadioGroup>
+        </FormControl>
+        <FormMessage />
+      </FormItem>
+    </FormField>
+
+    <!-- timeAndPatience -->
+    <FormField v-slot="{ componentField }" type="radio" name="timeAndPatience">
+      <FormItem class="space-y-3 pb-5">
+        <FormLabel>{{ setupOption.timeAndPatience.name }}</FormLabel>
+        <FormDescription>{{ setupOption.timeAndPatience.description }}</FormDescription>
+        <FormControl>
+          <RadioGroup class="flex flex-col space-y-1" v-bind="componentField">
+            <FormItem v-for="timeAndPatienceOption in setupOption.timeAndPatience.options" :key="timeAndPatienceOption.value"  class="flex items-center space-y-0 gap-x-3">
+              <FormControl>
+                <RadioGroupItem :value="timeAndPatienceOption.value" />
+              </FormControl>
+              <FormLabel class="font-normal">{{ timeAndPatienceOption.name }}</FormLabel>
+            </FormItem>
+          </RadioGroup>
+        </FormControl>
+        <FormMessage />
+      </FormItem>
+    </FormField>
+
+    <!-- riskAppetite -->
+    <FormField v-slot="{ componentField }" type="radio" name="riskAppetite">
+      <FormItem class="space-y-3 pb-5">
+        <FormLabel>{{ setupOption.riskAppetite.name }}</FormLabel>
+        <FormDescription>{{ setupOption.riskAppetite.description }}</FormDescription>
+        <FormControl>
+          <RadioGroup class="flex flex-col space-y-1" v-bind="componentField">
+            <FormItem v-for="riskAppetiteOption in setupOption.riskAppetite.options" :key="riskAppetiteOption.value"  class="flex items-center space-y-0 gap-x-3">
+              <FormControl>
+                <RadioGroupItem :value="riskAppetiteOption.value" />
+              </FormControl>
+              <FormLabel class="font-normal">{{ riskAppetiteOption.name }}</FormLabel>
+            </FormItem>
+          </RadioGroup>
+        </FormControl>
+        <FormMessage />
+      </FormItem>
+    </FormField>
+
+    <Button class="block mx-auto" type="submit">Analyze document</Button>
   </form>
 </template>
