@@ -16,13 +16,11 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 import Button from "@/components/ui/button/Button.vue";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { UserCog } from 'lucide-vue-next';
 
 const formSchema = toTypedSchema(
   z.object({
@@ -60,15 +58,6 @@ const onSubmit = handleSubmit((values) => {
 </script>
 
 <template>
-  <div class="text-center">
-    <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight flex items-center justify-center gap-3">
-      <span>Setup</span>
-      <UserCog class="inline-block size-7" />
-    </h3>
-    <p class="text-slate-500 text-sm">
-      Fill out the form below to analyze your document.
-    </p>
-  </div>
   <form class="space-y-2" @submit="onSubmit">
     <!-- type -->
     <FormField v-slot="{ componentField }" name="type">
