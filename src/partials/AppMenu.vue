@@ -50,11 +50,18 @@ const hasPrevious = computed(() => currentHop.value > 0);
 <template>
   <header>
     <Sheet :open="sheetOpen" v-on:update:open="sheetOpen=!sheetOpen">
-      <SheetTrigger class="flex justify-end fixed top-0 right-0 left-0 bg-white">
-        <Button variant="ghost" class="">
-          <Menu class="size-6 text-black" />
-        </Button>
-      </SheetTrigger>
+      <div class="flex justify-between fixed top-0 right-0 left-0 bg-white shadow-md z-40">
+        <SheetTrigger class="">
+          <Button variant="ghost" class="">
+            <Menu class="size-6 text-black" />
+          </Button>
+        </SheetTrigger>
+
+        <!-- navigation -->
+        <div class="">
+
+        </div>
+      </div>
       <SheetContent class="p-0 flex justify-between flex-col border-0">
         <div class="p-1">
           <SheetHeader>
