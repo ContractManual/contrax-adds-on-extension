@@ -15,7 +15,7 @@ const { currentRoute } = useRouter();
   <div class="min-h-screen flex flex-col justify-between">
     <div class="">
       <AppMenu />
-      <main class="px-1">
+      <main class="px-1 mt-14">
         <div
           v-if="
             currentRoute.meta.showHeadline === undefined ||
