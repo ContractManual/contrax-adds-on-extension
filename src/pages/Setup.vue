@@ -21,6 +21,15 @@ import {
 } from "@/components/ui/select";
 import Button from "@/components/ui/button/Button.vue";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { DateFormatter } from "@internationalized/date";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const df = new DateFormatter("en-US", {
+  // TODO: get last updated date from BE
+  dateStyle: "long",
+});
 
 const formSchema = toTypedSchema(
   z.object({
@@ -52,8 +61,10 @@ const { handleSubmit } = useForm({
 });
 
 const onSubmit = handleSubmit((values) => {
-  // TODO handle form 
+  // TODO handle form
   console.log(values);
+  // On success, redirect to the document analysis page
+  router.push({ name: "home" });
 });
 </script>
 
@@ -111,14 +122,23 @@ const onSubmit = handleSubmit((values) => {
     <FormField v-slot="{ componentField }" type="radio" name="bargainingPower">
       <FormItem class="space-y-3 pb-5">
         <FormLabel>{{ setupOption.bargainingPower.name }}</FormLabel>
-        <FormDescription>{{ setupOption.bargainingPower.description }}</FormDescription>
+        <FormDescription>{{
+          setupOption.bargainingPower.description
+        }}</FormDescription>
         <FormControl>
           <RadioGroup class="flex flex-col space-y-1" v-bind="componentField">
-            <FormItem v-for="bargainingPowerOption in setupOption.bargainingPower.options" :key="bargainingPowerOption.value"  class="flex items-center space-y-0 gap-x-3">
+            <FormItem
+              v-for="bargainingPowerOption in setupOption.bargainingPower
+                .options"
+              :key="bargainingPowerOption.value"
+              class="flex items-center space-y-0 gap-x-3"
+            >
               <FormControl>
                 <RadioGroupItem :value="bargainingPowerOption.value" />
               </FormControl>
-              <FormLabel class="font-normal">{{ bargainingPowerOption.name }}</FormLabel>
+              <FormLabel class="font-normal">{{
+                bargainingPowerOption.name
+              }}</FormLabel>
             </FormItem>
           </RadioGroup>
         </FormControl>
@@ -130,14 +150,23 @@ const onSubmit = handleSubmit((values) => {
     <FormField v-slot="{ componentField }" type="radio" name="timeAndPatience">
       <FormItem class="space-y-3 pb-5">
         <FormLabel>{{ setupOption.timeAndPatience.name }}</FormLabel>
-        <FormDescription>{{ setupOption.timeAndPatience.description }}</FormDescription>
+        <FormDescription>{{
+          setupOption.timeAndPatience.description
+        }}</FormDescription>
         <FormControl>
           <RadioGroup class="flex flex-col space-y-1" v-bind="componentField">
-            <FormItem v-for="timeAndPatienceOption in setupOption.timeAndPatience.options" :key="timeAndPatienceOption.value"  class="flex items-center space-y-0 gap-x-3">
+            <FormItem
+              v-for="timeAndPatienceOption in setupOption.timeAndPatience
+                .options"
+              :key="timeAndPatienceOption.value"
+              class="flex items-center space-y-0 gap-x-3"
+            >
               <FormControl>
                 <RadioGroupItem :value="timeAndPatienceOption.value" />
               </FormControl>
-              <FormLabel class="font-normal">{{ timeAndPatienceOption.name }}</FormLabel>
+              <FormLabel class="font-normal">{{
+                timeAndPatienceOption.name
+              }}</FormLabel>
             </FormItem>
           </RadioGroup>
         </FormControl>
@@ -149,14 +178,22 @@ const onSubmit = handleSubmit((values) => {
     <FormField v-slot="{ componentField }" type="radio" name="riskAppetite">
       <FormItem class="space-y-3 pb-5">
         <FormLabel>{{ setupOption.riskAppetite.name }}</FormLabel>
-        <FormDescription>{{ setupOption.riskAppetite.description }}</FormDescription>
+        <FormDescription>{{
+          setupOption.riskAppetite.description
+        }}</FormDescription>
         <FormControl>
           <RadioGroup class="flex flex-col space-y-1" v-bind="componentField">
-            <FormItem v-for="riskAppetiteOption in setupOption.riskAppetite.options" :key="riskAppetiteOption.value"  class="flex items-center space-y-0 gap-x-3">
+            <FormItem
+              v-for="riskAppetiteOption in setupOption.riskAppetite.options"
+              :key="riskAppetiteOption.value"
+              class="flex items-center space-y-0 gap-x-3"
+            >
               <FormControl>
                 <RadioGroupItem :value="riskAppetiteOption.value" />
               </FormControl>
-              <FormLabel class="font-normal">{{ riskAppetiteOption.name }}</FormLabel>
+              <FormLabel class="font-normal">{{
+                riskAppetiteOption.name
+              }}</FormLabel>
             </FormItem>
           </RadioGroup>
         </FormControl>
@@ -165,5 +202,10 @@ const onSubmit = handleSubmit((values) => {
     </FormField>
 
     <Button class="block mx-auto" type="submit">Analyze document</Button>
+
+    <div v-if="true" class="text-xs text-neutral-500 flex items-center justify-center gap-2">
+      <span class="">Last updated:</span>
+      <span class="">{{ df.format() }}</span>
+    </div>
   </form>
 </template>
