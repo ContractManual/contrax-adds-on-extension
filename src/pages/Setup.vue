@@ -64,7 +64,7 @@ const onSubmit = handleSubmit((values) => {
   // TODO handle form
   console.log(values);
   // On success, redirect to the document analysis page
-  router.push({ name: "home" });
+  router.push({ name: "contract-analysis" });
 });
 </script>
 
