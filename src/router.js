@@ -1,15 +1,4 @@
-// Docs - Route manual configuration
-
-// keep the following format: page.sub-page.sub-sub-page
-// meaning: page -> sub-page -> sub-sub-page -> ... match the pat5h /page/sub-page/sub-sub-page
-// for each page, add the fields `path`, `component`, `name`, `meta.displayName` 
-
-// `path` is the url path
-// `component` is the component to be rendered
-// `name` is the name of the route
-// `meta.displayName` is the name to be displayed in the sidebar
-// `meta.description` is the description to be displayed under the displayName
-// `meta.icon` is the icon to be displayed in the sidebar and in the name, see https://lucide.dev/guide/packages/lucide-vue-next
+// See README.md for more for routing routing
 
 export default [
   { path: '/', component: () => import('./pages/Home.vue'), name: 'home', meta: { displayName: 'Home', description: "Welcome to the Home Page", icon: "Home" } },
