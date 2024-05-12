@@ -21,7 +21,7 @@ const { currentRoute } = useRouter();
             currentRoute.meta.showHeadline === undefined ||
             currentRoute.meta.showHeadline
           "
-          class="text-center"
+          class="text-center mb-4"
         >
           <h3
             class="scroll-m-20 text-2xl font-semibold tracking-tight flex items-center justify-center gap-3"
