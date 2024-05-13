@@ -23,7 +23,9 @@ import Button from "@/components/ui/button/Button.vue";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { DateFormatter } from "@internationalized/date";
 import { useRouter } from "vue-router";
+import { useToast } from "@/components/ui/toast/use-toast";
 
+const { toast } = useToast();
 const router = useRouter();
 
 const df = new DateFormatter("en-US", {
@@ -65,6 +67,11 @@ const onSubmit = handleSubmit((values) => {
   console.log(values);
   // On success, redirect to the document analysis page
   router.push({ name: "contract-analysis" });
+  toast({
+    title: "Setup Complete",
+    description: "Now you can analyze the document",
+    duration: 1500,
+  })
 });
 </script>
 
