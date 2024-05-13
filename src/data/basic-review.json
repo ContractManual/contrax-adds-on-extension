@@ -1,0 +1,34 @@
+{
+  "stats": [
+    {
+      "name": "Defined Terms",
+      "label": "Get all Defined Terms (recommended)",
+      "value": "Get all Defined Terms (recommended)",
+      "score": 85
+    },
+    {
+      "name": "Undefined Terms",
+      "label": "Get all Undefined Terms (recommended)",
+      "value": "Get all Undefined Terms (recommended)",
+      "score": 92
+    },
+    {
+      "name": "Phrases",
+      "label": "Get other Key Phrases",
+      "value": "Get other Key Phrases",
+      "score": 10
+    },
+    {
+      "name": "Dates and Times",
+      "label": "Get dates and times",
+      "value": "Get dates and times",
+      "score": 50
+    },
+    {
+      "name": "People and Contacts",
+      "label": "Get people and contacts",
+      "value": "Get people and contacts",
+      "score": 70
+    }
+  ]
+}
