@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "vue";
 import legalTextForm from "@/data/legal-text-form.json";
 import { toTypedSchema } from "@vee-validate/zod";
 import { useForm } from "vee-validate";
@@ -23,6 +24,12 @@ import Button from "@/components/ui/button/Button.vue";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { Copy } from "lucide-vue-next";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useToast } from "@/components/ui/toast/use-toast";
+
+const { toast } = useToast();
+
+const isPending = ref(false);
 
 const formSchema = toTypedSchema(
   z.object({
@@ -38,13 +45,22 @@ const { handleSubmit } = useForm({
   validationSchema: formSchema,
 });
 
-const onSubmit = handleSubmit((values) => {
+const onSubmit = handleSubmit(async (values) => {
+  isPending.value = true;
   // TODO handle form
+  await new Promise((resolve) => setTimeout(resolve, 5000));
   console.log(values);
+  isPending.value = false;
 });
 
 const handleCopy = () => {
   navigator.clipboard.writeText("Hello World");
+
+  toast({
+    description: "Copied to clipboard",
+    duration: 400,
+    class: "py-4",
+  });
 };
 </script>
 
@@ -100,14 +116,20 @@ const handleCopy = () => {
     <Separator class="my-5" />
     <div class="">
       <h3 class="font-medium mb-2">Analysis</h3>
-      <div class="relative">
-        <Button @click="handleCopy" variant="ghost" title="copy" class="absolute top-1 right-1 size-6 p-2 rounded-full"> 
+      <Skeleton v-if="isPending" class="h-[200px]" />
+      <div v-else class="relative">
+        <Button
+          @click="handleCopy"
+          variant="ghost"
+          title="copy"
+          class="absolute top-1 right-1 size-6 p-2 rounded-full"
+        >
           <Copy class="size-4 shrink-0" />
         </Button>
         <Textarea
-        rows="9"
-        :disabled="false"
-        placeholder="Here you'll find the analysis"
+          rows="9"
+          :disabled="false"
+          placeholder="Here you'll find the analysis"
         />
       </div>
       <span v-if="true" class="text-xs text-neutral-400 text-center block">
