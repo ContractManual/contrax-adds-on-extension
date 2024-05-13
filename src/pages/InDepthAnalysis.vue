@@ -173,7 +173,7 @@ const handleCopy = () => {
           <FormControl>
             <Textarea
               v-on:update:modelValue="handleClauseChange"
-              :disabled="!allowEdit && currentClauseIndex > -1"
+              :disabled="!allowEdit || currentClauseIndex < 0"
               v-bind="componentField"
               :placeholder="inDepthAnalysisForm.clauseContent.placeholder"
               rows="7"
