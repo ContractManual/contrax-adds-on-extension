@@ -1,0 +1,48 @@
+{
+  "selectedClause": {
+    "name": "Clause",
+    "description": "The clause of the contract.",
+    "placeholder": "Enter the clause of the contract.",
+    "component": "select",
+    "errors": {
+      "required": "Clause is required."
+    }
+  },
+  "allowEdit": {
+    "name": "Allow Edit",
+    "description": "Allow the contract to be edited.",
+    "default": false
+  },
+  "clauseContent": {
+    "name": "Clause Content",
+    "description": "The content of the clause.",
+    "placeholder": "Enter the content of the clause.",
+    "component": "textarea",
+    "errors": {
+      "required": "Clause content is required."
+    }
+  },
+  "analysisType": {
+    "name": "Analysis Type",
+    "description": "The type of analysis to perform.",
+    "placeholder": "Select the type of analysis to perform.",
+    "component": "select",
+    "errors": {
+      "required": "Analysis type is required."
+    },
+    "options": [
+      {
+        "name": "Syntax Suggestions",
+        "value": "syntax"
+      },
+      {
+        "name": "Clause Meaning and Purpose",
+        "value": "meaning"
+      },
+      {
+        "name": "Deeper Analysis",
+        "value": "deeper"
+      }
+    ]
+  }
+}
