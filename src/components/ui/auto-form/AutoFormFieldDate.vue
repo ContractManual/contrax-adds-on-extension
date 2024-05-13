@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { DateFormatter, getLocalTimeZone } from '@internationalized/date'
 import { CalendarIcon } from 'lucide-vue-next'
 import { beautifyObjectName } from './utils'
