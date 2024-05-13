@@ -1,7 +1,8 @@
-<script setup lang="ts">
-import { useToast } from "@/components/ui/toast/use-toast";
+<script setup>
+import Button from "@/components/ui/button/Button.vue";
+import { useRouter } from "vue-router";
 
-const { toast } = useToast();
+const router = useRouter();
 </script>
 
 <template>
@@ -17,7 +18,7 @@ const { toast } = useToast();
           })
       "
     >
-      toast
-    </button>
+  </button>
+  <Button variant="secondary" class="shadow-md mx-auto block" @click="() => router.push({ name: 'setup' })">Get Started</Button>
   </div>
 </template>
