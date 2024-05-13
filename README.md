@@ -1,5 +1,12 @@
 # Contrax Adds-On Extension
 
+### Commands
+#### Deploy 
+After login, and creating your document, run the following command to deploy the contract to the blockchain.
+```bash
+npm run deploy
+```
+
 ### Style Guide
 
 use [tailwindcss](https://tailwindcss.com/) for styling.

@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "build:watch": "vite build --watch",
     "clasp": "clasp",
-    "clasp:create": "clasp create --rootDir ./dist --type docs --parentId 1OLBOFdCy3Rz2ky7duT8Oa0c-tM9vK7-SisaCmtArOLE --title contrax-Adds-on-extension"
+    "clasp:create": "clasp create --rootDir ./dist --type docs --parentId 1OLBOFdCy3Rz2ky7duT8Oa0c-tM9vK7-SisaCmtArOLE --title contrax-Adds-on-extension",
+    "deploy": "npm run build && npm run clasp push && npm run clasp deploy"
   },
   "dependencies": {
     "@google/clasp": "^2.4.2",
