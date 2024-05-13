@@ -1,0 +1,25 @@
+{
+  "type": {
+    "name": "Analysis type",
+    "description": "Select the type of analysis you want to perform",
+    "placeholder": "Select the type",
+    "component": "select",
+    "errors": {
+      "required": "Please select the type of analysis you want to perform"
+    },
+    "options": [
+      { "name": "Syntax Suggestions", "value": "syntax" },
+      { "name": "Summery", "value": "summary" },
+      { "name": "In-depth Analysis", "value": "analysis" }
+    ]
+  },
+  "clause": {
+    "name": "Selected clause/section",
+    "description": "Paste what you want analyzed",
+    "component": "textarea",
+    "placeholder": "Paste the clause/section you want analyzed",
+    "errors": {
+      "required": "Please paste the clause/section you want analyzed"
+    }
+  }
+}
