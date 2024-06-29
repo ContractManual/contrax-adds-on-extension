@@ -1,8 +1,11 @@
 # Contrax Adds-On Extension
 
 ### Commands
-#### Deploy 
+
+#### Deploy
+
 After login, and creating your document, run the following command to deploy the contract to the blockchain.
+
 ```bash
 npm run deploy
 ```
@@ -15,9 +18,10 @@ see our style system on [figma](https://www.figma.com/file/XS7FAOVrbjl8wnpWmVj0M
 
 ### Component library [shadcn-vue](https://www.shadcn-vue.com/)
 
-
 ### Route Manual Configuration Documentation
+
 See the [Vue Router](https://router.vuejs.org/) documentation for more information.
+
 #### Format Guidelines
 
 - Pages should follow this format: `page.sub-page.sub-sub-page`
@@ -43,3 +47,18 @@ See the [Vue Router](https://router.vuejs.org/) documentation for more informati
     icon: 'IconName',
   }
 }
+```
+
+### Environment Variables
+
+- `BEARER_TOKEN`: Bearer token for authentication
+
+  Generate one using the following command:
+  ```bash
+      gcloud auth print-identity-token
+  ```
+  Then:
+  1. Open your Apps Script project in the online editor.
+  1. Go to Project Settings (under the gear icon).
+  1. Scroll to Script Properties.
+  1. Add your key-value pairs here. This is similar to setting environment variables.
