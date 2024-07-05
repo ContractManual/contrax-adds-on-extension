@@ -16,21 +16,14 @@ function main() {
     );
 }
 
-/**
- * Sends a request to GCP functions
- * 
- * @param {string} endpoint endpoint to send request to
- * @param {object} data data to send in request
- * @returns {Promise<{status: number, data: object}>} response from server
- */
-async function sendRequest(endpoint, data = {}) {
-  const resp = await fetch(endpoint, {
+function sendRequest(endpoint, data = {}) {
+  const resp = UrlFetchApp.fetch(endpoint, {
     method: 'POST',
+    contentType: 'application/json',
     headers: {
-      'Content-Type': 'application/json',
       'Authorization': `Bearer ${BEARER_TOKEN}`,
     },
-    body: JSON.stringify({
+    payload: JSON.stringify({
       ...data,
       email: Session.getActiveUser().getEmail(),
       document_id: DocumentApp.getActiveDocument().getId(),
@@ -38,19 +31,19 @@ async function sendRequest(endpoint, data = {}) {
   });
 
   return {
-    status: resp.status,
-    data: await resp.json()
+    status: resp.getResponseCode(),
+    data: JSON.parse(resp.getContentText()),
   };
 }
 
-async function initDocument() {
-  return await sendRequest(INIT_DOCUMENT_URL);
+function initDocument() {
+  return sendRequest(INIT_DOCUMENT_URL);
 }
 
-async function configDocument(config) {
-  return await sendRequest(CONFIG_DOCUMENT_URL, config);
+function configDocument(config) {
+  return sendRequest(CONFIG_DOCUMENT_URL, config);
 }
 
-async function getDocument() {
-  return await sendRequest(GET_DOCUMENT_URL);
+function getDocument() {
+  return sendRequest(GET_DOCUMENT_URL);
 }
