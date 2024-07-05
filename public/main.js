@@ -4,7 +4,6 @@ if (!BEARER_TOKEN) {
   throw new Error('BEARER_TOKEN is not set in script properties')
 }
 
-const INIT_DOCUMENT_URL = "https://us-central1-rounddesk-1.cloudfunctions.net/init_document";
 const CONFIG_DOCUMENT_URL = "https://us-central1-rounddesk-1.cloudfunctions.net/fill_setup_config";
 const GET_DOCUMENT_URL = "https://us-central1-rounddesk-1.cloudfunctions.net/get_setup_config";
 
@@ -34,10 +33,6 @@ function sendRequest(endpoint, data = {}) {
     status: resp.getResponseCode(),
     data: JSON.parse(resp.getContentText()),
   };
-}
-
-function initDocument() {
-  return sendRequest(INIT_DOCUMENT_URL);
 }
 
 function configDocument(config) {
