@@ -23,10 +23,10 @@ import Button from "@/components/ui/button/Button.vue";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { DateFormatter } from "@internationalized/date";
 import { useRouter } from "vue-router";
-import { useToast } from "@/components/ui/toast/use-toast";
+import { docStore } from "@/lib/doc-store";
 
-const { toast } = useToast();
 const router = useRouter();
+const { doc, saveDoc } = docStore;
 
 const df = new DateFormatter("en-US", {
   // TODO: get last updated date from BE
@@ -60,18 +60,14 @@ const formSchema = toTypedSchema(
 
 const { handleSubmit } = useForm({
   validationSchema: formSchema,
+  defaultValues: doc,
 });
 
-const onSubmit = handleSubmit((values) => {
-  // TODO handle form
-  console.log(values);
-  // On success, redirect to the document analysis page
-  router.push({ name: "contract-analysis" });
-  toast({
-    title: "Setup Complete",
-    description: "Now you can analyze the document",
-    duration: 1500,
-  })
+const onSubmit = handleSubmit(async (values) => {
+  const isSuccessful = saveDoc(values);
+  if (isSuccessful) {
+    router.push({ name: "contract-analysis" });
+  }1
 });
 </script>
 
