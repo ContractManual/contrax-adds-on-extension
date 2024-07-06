@@ -14,14 +14,9 @@ export const docStore = reactive({
   getDoc() {
     google.script.run.withSuccessHandler(function (doc) {
       docStore.doc = doc;
-      $emit('success', {
-        message: 'Document loaded',
-      });
+      console.log(doc);
     }).withFailureHandler(function (error) {
-      $emit('error', {
-        message: 'Failed to load document',
-        error,
-      });
+      console.error('Failed to get document', error);
     }).getDocument();
   },
 
@@ -31,15 +26,10 @@ export const docStore = reactive({
 
     google.script.run.withSuccessHandler(function (newConf) {
       docStore.doc = newConf;
-      $emit('success', {
-        message: 'Document saved',
-      });
+      console.log(newConf);
       isSuccessful = true;
     }).withFailureHandler(function (error) {
-      $emit('error', {
-        message: 'Failed to save document',
-        error,
-      });
+      console.error('Failed to save document', error);
     }).configDocument(conf);
 
     return isSuccessful;
