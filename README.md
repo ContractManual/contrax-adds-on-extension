@@ -54,11 +54,19 @@ See the [Vue Router](https://router.vuejs.org/) documentation for more informati
 - `BEARER_TOKEN`: Bearer token for authentication
 
   Generate one using the following command:
+
   ```bash
       gcloud auth print-identity-token
   ```
+
   Then:
+
   1. Open your Apps Script project in the online editor.
   1. Go to Project Settings (under the gear icon).
   1. Scroll to Script Properties.
   1. Add your key-value pairs here. This is similar to setting environment variables.
+
+### Moke Google Apps Script
+
+On every function you add to the script, add it to `src\lib\mock-google-script.js` as well.
+that's will allow you to test the function locally.
