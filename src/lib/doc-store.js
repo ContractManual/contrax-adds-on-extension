@@ -1,9 +1,6 @@
 // Store for the document data and state
 
 import { reactive } from 'vue';
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
 
 export const docStore = reactive({
   // data from "users/:id/documents/:docId" in firebase
@@ -14,26 +11,24 @@ export const docStore = reactive({
   },
 
   // trigger `getDocument` on `main.gs` to get the document data
-  getDoc() {
+  getDoc(onSuccess, onFailure) {
     google.script.run.withSuccessHandler(function (doc) {
       docStore.doc = doc;
-      if (!doc.configured) {
-        router.push({ name: "setup" });
-      } else {
-        router.push({ name: "contract-analysis" });
-      }
+      onSuccess(doc);
     }).withFailureHandler(function (error) {
       console.error(error);
+      onFailure(error);
     }).getDocument();
   },
 
   // trigger `configDocument` on `main.gs` to save the document data
-  saveDoc(conf) {
+  saveDoc(conf, onSuccess, onFailure) {
     google.script.run.withSuccessHandler(function (newConf) {
       docStore.doc = newConf;
-      router.push({ name: "contract-analysis" });
+      onSuccess(newConf);
     }).withFailureHandler(function (error) {
       console.error(error);
+      onFailure(error);
     }).configDocument(conf);
   },
 });
