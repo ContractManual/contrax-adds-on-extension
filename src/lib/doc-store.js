@@ -12,22 +12,22 @@ export const docStore = reactive({
 
   // trigger `getDocument` on `main.gs` to get the document data
   getDoc(onSuccess, onFailure) {
-    google.script.run.withSuccessHandler(function (doc) {
-      docStore.doc = doc;
-      onSuccess(doc);
+    google.script.run.withSuccessHandler(function (resp) {
+      docStore.doc = resp.data;
+      onSuccess(resp.data);
     }).withFailureHandler(function (error) {
-      console.error(error);
+      console.error(error.message);
       onFailure(error);
     }).getDocument();
   },
 
   // trigger `configDocument` on `main.gs` to save the document data
   saveDoc(conf, onSuccess, onFailure) {
-    google.script.run.withSuccessHandler(function (newConf) {
-      docStore.doc = newConf;
-      onSuccess(newConf);
+    google.script.run.withSuccessHandler(function (resp) {
+      docStore.doc = resp.data;
+      onSuccess(resp.data);
     }).withFailureHandler(function (error) {
-      console.error(error);
+      console.error(error.message);
       onFailure(error);
     }).configDocument(conf);
   },
