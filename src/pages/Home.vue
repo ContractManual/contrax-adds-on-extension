@@ -1,21 +1,12 @@
 <script setup>
 import Button from "@/components/ui/button/Button.vue";
-import { useRouter } from "vue-router";
 import { docStore } from "../lib/doc-store";
 
-const router = useRouter();
-const { getDoc, isConfigured } = docStore;
-
+const { getDoc } = docStore;
 
 function getStarted() {
   getDoc();
-  if (isConfigured()) {
-    router.push({ name: "contract-analysis" });
-  } else {
-    router.push({ name: "setup" });
-  }
 }
-
 
 </script>
 

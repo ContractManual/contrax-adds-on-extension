@@ -35,25 +35,20 @@ const df = new DateFormatter("en-US", {
 
 const formSchema = toTypedSchema(
   z.object({
-    type: z.enum(
-      setupOption.type.options.map((option) => option.value),
-      { required_error: setupOption.type.errors.required }
+    contract_type: z.number(
+      { required_error: setupOption.contract_type.errors.required }
     ),
-    role: z.enum(
-      setupOption.role.options.map((option) => option.value),
+    role: z.number(
       { required_error: setupOption.role.errors.required }
     ),
-    bargainingPower: z.enum(
-      setupOption.bargainingPower.options.map((option) => option.value),
-      { required_error: setupOption.bargainingPower.errors.required }
+    bargaining_power: z.number(
+      { required_error: setupOption.bargaining_power.errors.required }
     ),
-    timeAndPatience: z.enum(
-      setupOption.timeAndPatience.options.map((option) => option.value),
-      { required_error: setupOption.timeAndPatience.errors.required }
+    time_and_patience: z.number(
+      { required_error: setupOption.time_and_patience.errors.required }
     ),
-    riskAppetite: z.enum(
-      setupOption.riskAppetite.options.map((option) => option.value),
-      { required_error: setupOption.riskAppetite.errors.required }
+    risk_appetite: z.number(
+      { required_error: setupOption.risk_appetite.errors.required }
     ),
   })
 );
@@ -64,28 +59,25 @@ const { handleSubmit } = useForm({
 });
 
 const onSubmit = handleSubmit(async (values) => {
-  const isSuccessful = saveDoc(values);
-  if (isSuccessful) {
-    router.push({ name: "contract-analysis" });
-  }1
+  saveDoc(values);
 });
 </script>
 
 <template>
   <form class="space-y-2" @submit="onSubmit">
-    <!-- type -->
-    <FormField v-slot="{ componentField }" name="type">
+    <!-- contract_type -->
+    <FormField v-slot="{ componentField }" name="contract_type">
       <FormItem>
-        <FormLabel>{{ setupOption.type.name }}</FormLabel>
-        <FormDescription>{{ setupOption.type.description }}</FormDescription>
+        <FormLabel>{{ setupOption.contract_type.name }}</FormLabel>
+        <FormDescription>{{ setupOption.contract_type.description }}</FormDescription>
         <Select v-bind="componentField">
           <SelectTrigger>
-            <SelectValue :placeholder="setupOption.type.placeholder" />
+            <SelectValue :placeholder="setupOption.contract_type.placeholder" />
           </SelectTrigger>
           <SelectGroup>
             <SelectContent>
               <SelectItem
-                v-for="typeOption in setupOption.type.options"
+                v-for="typeOption in setupOption.contract_type.options"
                 :key="typeOption.value"
                 :value="typeOption.value"
                 >{{ typeOption.name }}</SelectItem
@@ -121,18 +113,17 @@ const onSubmit = handleSubmit(async (values) => {
       </FormItem>
     </FormField>
 
-    <!-- bargainingPower -->
-    <FormField v-slot="{ componentField }" type="radio" name="bargainingPower">
+    <!-- bargaining_power -->
+    <FormField v-slot="{ componentField }" type="radio" name="bargaining_power">
       <FormItem class="space-y-3 pb-5">
-        <FormLabel>{{ setupOption.bargainingPower.name }}</FormLabel>
+        <FormLabel>{{ setupOption.bargaining_power.name }}</FormLabel>
         <FormDescription>{{
-          setupOption.bargainingPower.description
+          setupOption.bargaining_power.description
         }}</FormDescription>
         <FormControl>
           <RadioGroup class="flex flex-col space-y-1" v-bind="componentField">
             <FormItem
-              v-for="bargainingPowerOption in setupOption.bargainingPower
-                .options"
+              v-for="bargainingPowerOption in setupOption.bargaining_power.options"
               :key="bargainingPowerOption.value"
               class="flex items-center space-y-0 gap-x-3"
             >
@@ -149,17 +140,17 @@ const onSubmit = handleSubmit(async (values) => {
       </FormItem>
     </FormField>
 
-    <!-- timeAndPatience -->
-    <FormField v-slot="{ componentField }" type="radio" name="timeAndPatience">
+    <!-- time_and_patience -->
+    <FormField v-slot="{ componentField }" type="radio" name="time_and_patience">
       <FormItem class="space-y-3 pb-5">
-        <FormLabel>{{ setupOption.timeAndPatience.name }}</FormLabel>
+        <FormLabel>{{ setupOption.time_and_patience.name }}</FormLabel>
         <FormDescription>{{
-          setupOption.timeAndPatience.description
+          setupOption.time_and_patience.description
         }}</FormDescription>
         <FormControl>
           <RadioGroup class="flex flex-col space-y-1" v-bind="componentField">
             <FormItem
-              v-for="timeAndPatienceOption in setupOption.timeAndPatience
+              v-for="timeAndPatienceOption in setupOption.time_and_patience
                 .options"
               :key="timeAndPatienceOption.value"
               class="flex items-center space-y-0 gap-x-3"
@@ -177,17 +168,17 @@ const onSubmit = handleSubmit(async (values) => {
       </FormItem>
     </FormField>
 
-    <!-- riskAppetite -->
-    <FormField v-slot="{ componentField }" type="radio" name="riskAppetite">
+    <!-- risk_appetite -->
+    <FormField v-slot="{ componentField }" type="radio" name="risk_appetite">
       <FormItem class="space-y-3 pb-5">
-        <FormLabel>{{ setupOption.riskAppetite.name }}</FormLabel>
+        <FormLabel>{{ setupOption.risk_appetite.name }}</FormLabel>
         <FormDescription>{{
-          setupOption.riskAppetite.description
+          setupOption.risk_appetite.description
         }}</FormDescription>
         <FormControl>
           <RadioGroup class="flex flex-col space-y-1" v-bind="componentField">
             <FormItem
-              v-for="riskAppetiteOption in setupOption.riskAppetite.options"
+              v-for="riskAppetiteOption in setupOption.risk_appetite.options"
               :key="riskAppetiteOption.value"
               class="flex items-center space-y-0 gap-x-3"
             >
