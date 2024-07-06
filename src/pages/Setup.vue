@@ -59,7 +59,12 @@ const { handleSubmit } = useForm({
 });
 
 const onSubmit = handleSubmit(async (values) => {
-  saveDoc(values);
+  saveDoc(values,
+    () => {
+      router.push({ name: "contract-analysis" });
+    },
+    (error) => console.error(error)
+  );
 });
 </script>
 
