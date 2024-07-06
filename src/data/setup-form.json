@@ -1,28 +1,28 @@
 {
-  "type": {
+  "contract_type": {
     "name": "Type",
     "description": "The type of the contract.",
     "errors": {
       "required": "Type is required."
     },
     "options": [
-      { "name": "MNDA", "value": "MNDA Mutual NDA" },
-      { "name": "NDA", "value": "NDA NDA" },
+      { "name": "MNDA", "value": 1 },
+      { "name": "NDA", "value": 2 },
       {
         "name": "Services & Consulting Agreement",
-        "value": "SCA Services and Consulting"
+        "value": 3
       },
-      { "name": "Agreement", "value": "Agreement" },
+      { "name": "Agreement", "value": 4 },
       {
         "name": "MSCA Master Services and Consulting Agreement",
-        "value": "MSCA Master Services and Consulting Agreement"
+        "value": 5
       },
-      { "name": "Statement of Work", "value": "SOW Statement of Work" },
+      { "name": "Statement of Work", "value": 6 },
       {
         "name": "Vendor / Supplier Agreement",
-        "value": "MSCA Master Services and Consulting Agreement"
+        "value": 7
       },
-      { "name": "Other", "value": "other" }
+      { "name": "Other", "value": 8 }
     ],
     "placeholder": "Select the contract type"
   },
@@ -35,14 +35,14 @@
       "required": "Role is required."
     },
     "options": [
-      { "name": "Business Partner", "value": "Business Partner" },
-      { "name": "Supplier / Vendor", "value": "Supplier / Vendor" },
-      { "name": "Client", "value": "Client" },
-      { "name": "Other", "value": "other" }
+      { "name": "Business Partner", "value": 1 },
+      { "name": "Supplier / Vendor", "value": 2 },
+      { "name": "Client", "value": 3 },
+      { "name": "Other", "value": 4 }
     ],
     "placeholder": "Select your role"
   },
-  "bargainingPower": {
+  "bargaining_power": {
     "name": "Bargaining Power",
     "inputType": "radio",
     "component": "radio",
@@ -53,20 +53,20 @@
     "options": [
       {
         "name": "You do - you can walk away from this.",
-        "value": "You do - you can walk away from this."
+        "value": 1
       },
       {
         "name": "You have slight bargaining power",
-        "value": "You have slight bargaining power"
+        "value": 2
       },
       {
         "name": "Parties on similar footing",
-        "value": "Parties on similar footing"
+        "value": 3
       }
     ],
     "placeholder": "Select the bargaining power"
   },
-  "timeAndPatience": {
+  "time_and_patience": {
     "name": "Time and Patience",
     "inputType": "radio",
     "component": "radio",
@@ -77,28 +77,28 @@
     "options": [
       {
         "name": "I'm very patient",
-        "value": "I'm very patient"
+        "value": 1
       },
       {
         "name": "I'm patient",
-        "value": "I'm patient"
+        "value": 2
       },
       {
         "name": "I'm practical",
-        "value": "I'm practical"
+        "value": 3
       },
       {
         "name": "I prefer a brief negotiation",
-        "value": "I prefer a brief negotiation"
+        "value": 4
       },
       {
         "name": "I must finish this quickly",
-        "value": "I must finish this quickly"
+        "value": 5
       }
     ],
     "placeholder": "Select the time and patience"
   },
-  "riskAppetite": {
+  "risk_appetite": {
     "name": "Risk Appetite",
     "inputType": "radio",
     "component": "radio",
@@ -109,11 +109,11 @@
     "options": [
       {
         "name": "High - I'm confident there will be no problem and if there is it's worth it.",
-        "value": "High - I'm confident there will be no problem and if there is it's worth it."
+        "value": 1
       },
-      { "name": "Moderate", "value": "Moderate" },
-      { "name": "Medium", "value": "Medium" },
-      { "name": "Low", "value": "Low" }
+      { "name": "Moderate", "value": 2 },
+      { "name": "Medium", "value": 3 },
+      { "name": "Low", "value": 4 }
     ],
     "placeholder": "Select the risk appetite"
   }
